@@ -52,7 +52,7 @@ mkdir -p "$RELS_DIR"
 echo "Creating .rels file to specify relationships..."
 cp -f "$SCRIPT_DIR/templates/rels.xml" "$RELS_FILE"
 
-RELATIONSHIP="<Relationship Type='http://schemas.openxmlformats.org/ip2sg/package/relationships/efilingapplication' Target='/$UUID/$FILE_NAME' Id='$FILE_MD5' />"
+RELATIONSHIP="<Relationship Type=\"http://schemas.openxmlformats.org/ip2sg/package/relationships/efilingapplication\" Target=\"/$UUID/$FILE_NAME\" Id=\"$FILE_MD5\" />"
 
 echo "Adding relationship to .rel file..."
 sed -i '' '/<\/Relationships>/i \
