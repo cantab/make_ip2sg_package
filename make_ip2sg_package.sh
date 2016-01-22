@@ -73,3 +73,6 @@ if [[ -f "$PACKAGE_DIR/.DS_Store" ]]; then
   echo "Removing .DS_Store file..."
   rm "$PACKAGE_DIR/.DS_Store"
 fi
+
+echo "Making the zip file..."
+zip -r "$FILE_DIR/$PACKAGE_NAME.frmx" "$PACKAGE_DIR"
