@@ -115,6 +115,17 @@ if [[ -f "$PACKAGE_DIR/.DS_Store" ]]; then
   rm "$PACKAGE_DIR/.DS_Store"
 fi
 
+if [[ -f "$FILE_DIR/$PACKAGE_NAME.frmx" ]]; then
+  read -p "Delete existing zip file $PACKAGE_NAME.frmx (Y/n)? " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Zip file $PACKAGE_NAME.frmx already present. Quitting."
+    exit 1
+  else
+    rm -Rf "$PACKAGE_NAME.frmx "
+  fi
+fi
+
 echo "Making the zip file..."
 cd "$PACKAGE_DIR" && zip -r "../$PACKAGE_NAME.frmx" .
 
