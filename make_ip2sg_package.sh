@@ -75,4 +75,4 @@ if [[ -f "$PACKAGE_DIR/.DS_Store" ]]; then
 fi
 
 echo "Making the zip file..."
-zip -r "$FILE_DIR/$PACKAGE_NAME.frmx" "$PACKAGE_DIR"
+cd "$PACKAGE_DIR" && zip -r "../$PACKAGE_NAME.frmx" .
