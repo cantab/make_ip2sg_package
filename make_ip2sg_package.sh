@@ -46,6 +46,15 @@ RELS_FILE="$RELS_DIR/.rels"
 echo "Creating new directory for package $PACKAGE_DIR..."
 mkdir -p "$PACKAGE_DIR"
 
+echo "Creating [Content_Types].xml file to specify content types..."
+cp -f "$SCRIPT_DIR/templates/content_types.xml" "$PACKAGE_DIR/[Content_Types].xml"
+
+echo "Creating directory for XML file..."
+mkdir -p "$XML_DIR"
+
+echo "Copying XML file into XML directory..."
+cp -f "$FILE_PATH" "$XML_DIR/"
+
 echo "Creating _rels directory to store relationships..."
 mkdir -p "$RELS_DIR"
 
@@ -58,15 +67,6 @@ echo "Adding relationship to .rels file..."
 sed -i '' '/<\/Relationships>/i \
 '"$RELATIONSHIP"'
 ' "$RELS_FILE"
-
-echo "Creating [Content_Types].xml file to specify content types..."
-cp -f "$SCRIPT_DIR/templates/content_types.xml" "$PACKAGE_DIR/[Content_Types].xml"
-
-echo "Creating directory for XML file..."
-mkdir -p "$XML_DIR"
-
-echo "Copying XML file into XML directory..."
-cp -f "$FILE_PATH" "$XML_DIR/"
 
 if [[ -f "$PACKAGE_DIR/.DS_Store" ]]; then
   echo "Removing .DS_Store file..."
