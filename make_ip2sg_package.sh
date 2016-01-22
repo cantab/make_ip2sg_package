@@ -67,3 +67,8 @@ mkdir -p "$XML_DIR"
 
 echo "Copying XML file into XML directory..."
 cp -f "$FILE_PATH" "$XML_DIR/"
+
+if [[ -f "$PACKAGE_DIR/.DS_Store" ]]; then
+  echo "Removing .DS_Store file..."
+  rm "$PACKAGE_DIR/.DS_Store"
+fi
