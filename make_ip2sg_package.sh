@@ -74,6 +74,17 @@ XML_DIR="$PACKAGE_DIR/$UUID"
 RELS_DIR="$PACKAGE_DIR/_rels"
 RELS_FILE="$RELS_DIR/.rels"
 
+if [[ -d "$PACKAGE_DIR" ]]; then
+  read -p "Delete existing package directory $PACKAGE_DIR (Y/n)? " -n 1 -r
+  echo
+  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    echo "Package directory $PACKAGE_DIR already present. Quitting."
+    exit 1
+  else
+    rm -Rf "$PACKAGE_DIR"
+  fi
+fi
+
 echo "Creating new directory for package $PACKAGE_DIR..."
 mkdir -p "$PACKAGE_DIR"
 
