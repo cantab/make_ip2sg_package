@@ -12,6 +12,35 @@ function show_help {
   exit 1
 }
 
+# Define a function to show debug info
+function debug_info {
+  echo ""
+  echo ""
+  echo "Showing debugging information..."
+  echo ""
+  tree -a "$PACKAGE_DIR"
+  echo ""
+  echo "Variable values:"
+  echo '$FILE_DIR' "is $FILE_DIR"
+  echo '$FILE_NAME' "is $FILE_NAME"
+  echo '$FILE_NAME_NO_SUFFIX' "is $FILE_NAME_NO_SUFFIX"
+  echo '$FILE_MD5' "is $FILE_MD5"
+  echo '$PACKAGE_DIR' "is $PACKAGE_DIR"
+  echo '$PACKAGE_NAME' "is $PACKAGE_NAME"
+  echo '$UUID' "is $UUID"
+  echo '$XML_DIR' "is $XML_DIR"
+  echo '$RELS_DIR' "is $RELS_DIR"
+  echo '$RELS_FILE' "is $RELS_FILE"
+  echo ""
+  echo "Content of content types file:"
+  cat "$PACKAGE_DIR/[Content_Types].xml"
+  echo ""
+  echo "Content of .rels file:"
+  cat "$RELS_FILE"
+  echo ""
+  exit 1
+}
+
 while getopts ":h:" OPT; do
     case "$OPT" in
     h)  show_help
@@ -76,3 +105,5 @@ fi
 
 echo "Making the zip file..."
 cd "$PACKAGE_DIR" && zip -r "../$PACKAGE_NAME.frmx" .
+
+debug_info
