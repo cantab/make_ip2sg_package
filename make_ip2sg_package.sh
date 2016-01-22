@@ -54,7 +54,7 @@ cp -f "$SCRIPT_DIR/templates/rels.xml" "$RELS_FILE"
 
 RELATIONSHIP="<Relationship Type=\"http://schemas.openxmlformats.org/ip2sg/package/relationships/efilingapplication\" Target=\"/$UUID/$FILE_NAME\" Id=\"$FILE_MD5\" />"
 
-echo "Adding relationship to .rel file..."
+echo "Adding relationship to .rels file..."
 sed -i '' '/<\/Relationships>/i \
 '"$RELATIONSHIP"'
 ' "$RELS_FILE"
