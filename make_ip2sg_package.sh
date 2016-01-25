@@ -122,7 +122,7 @@ if [[ -f "$FILE_DIR/$PACKAGE_NAME.frmx" ]]; then
     echo "Zip file $PACKAGE_NAME.frmx already present. Quitting."
     exit 1
   else
-    rm -Rf "$PACKAGE_NAME.frmx "
+    rm -Rf "$ZIP_FILE_PATH"
   fi
 fi
 
