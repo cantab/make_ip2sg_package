@@ -34,10 +34,10 @@ function debug_info {
   echo '$RELS_DIR' "is $RELS_DIR"
   echo '$RELS_FILE' "is $RELS_FILE"
   echo ""
-  echo "Content of content types file:"
+  echo "Contents of content types file:"
   cat "$PACKAGE_DIR/[Content_Types].xml"
   echo ""
-  echo "Content of .rels file:"
+  echo "Contents of .rels file:"
   cat "$RELS_FILE"
   echo ""
   exit 1
