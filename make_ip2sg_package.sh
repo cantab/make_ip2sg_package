@@ -10,6 +10,8 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 function show_help {
   echo "Usage:"
   echo "   make_ip2sg_package [-f] file_name"
+  echo "Options:"
+  echo "   -f overwrite existing files"
   exit 1
 }
 
@@ -46,8 +48,10 @@ function debug_info {
   exit 1
 }
 
-while getopts ":h:" OPT; do
+while getopts ":fh:" OPT; do
     case "$OPT" in
+    f)  FORCE_OVERWRITE=true
+        ;;
     h)  show_help
         ;;
     *)  show_help
@@ -88,11 +92,13 @@ RELS_FILE="$RELS_DIR/.rels"
 
 # Prompt to overwrite if package directory already exists
 if [[ -d "$PACKAGE_DIR" ]]; then
-  read -p "Delete existing package directory $PACKAGE_DIR (Y/n)? " -n 1 -r
-  echo
-  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    echo "Package directory $PACKAGE_DIR already present. Quitting."
-    exit 1
+  if [[ ! "$FORCE_OVERWRITE" = true ]]; then
+    read -p "Delete existing package directory $PACKAGE_DIR (Y/n)? " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+      echo "Package directory $PACKAGE_DIR already present. Quitting."
+      exit 1
+    fi
   fi
   echo "Deleting directory $PACKAGE_DIR..."
   rm -Rf "$PACKAGE_DIR"
@@ -135,11 +141,13 @@ fi
 
 # Prompt to overwrite if zip file already exists
 if [[ -f "$ZIP_FILE_PATH" ]]; then
-  read -p "Delete existing zip file $PACKAGE_NAME.frmx (Y/n)? " -n 1 -r
-  echo
-  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    echo "Zip file $PACKAGE_NAME.frmx already present. Quitting."
-    exit 1
+  if [[ ! "$FORCE_OVERWRITE" = true ]]; then
+    read -p "Delete existing zip file $PACKAGE_NAME.frmx (Y/n)? " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+      echo "Zip file $PACKAGE_NAME.frmx already present. Quitting."
+      exit 1
+    fi
   fi
   echo "Deleting file $PACKAGE_NAME.frmx..."
   rm -Rf "$ZIP_FILE_PATH"
