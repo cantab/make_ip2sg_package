@@ -83,6 +83,7 @@ if [[ -d "$PACKAGE_DIR" ]]; then
     echo "Package directory $PACKAGE_DIR already present. Quitting."
     exit 1
   else
+    echo "Deleting directory $PACKAGE_DIR..."
     rm -Rf "$PACKAGE_DIR"
   fi
 fi
@@ -124,6 +125,7 @@ if [[ -f "$ZIP_FILE_PATH" ]]; then
     echo "Zip file $PACKAGE_NAME.frmx already present. Quitting."
     exit 1
   else
+    echo "Deleting file $PACKAGE_NAME.frmx..."
     rm -Rf "$ZIP_FILE_PATH"
   fi
 fi
