@@ -62,6 +62,11 @@ shift $((OPTIND-1))
 # Store the operand as the name of the application
 FILE_PATH=$@
 
+# Show usage if no parameter is passed
+if [[ -z "$FILE_PATH" ]]; then
+  show_help
+fi
+
 # Show error message and quit if file does not exist
 if [[ ! -f $FILE_PATH ]]; then
   echo "File $FILE_PATH does not exist. Quitting."
