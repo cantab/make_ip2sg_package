@@ -28,6 +28,7 @@ function debug_info {
   echo '$FILE_MD5' "is $FILE_MD5"
   echo '$PACKAGE_DIR' "is $PACKAGE_DIR"
   echo '$PACKAGE_NAME' "is $PACKAGE_NAME"
+  echo '$ZIP_FILE_PATH' "is $ZIP_FILE_PATH"
   echo '$UUID' "is $UUID"
   echo '$XML_DIR' "is $XML_DIR"
   echo '$RELS_DIR' "is $RELS_DIR"
@@ -69,6 +70,7 @@ FILE_NAME_NO_SUFFIX="$(basename "$FILE_PATH" .xml)"
 FILE_MD5="$(openssl md5 "$FILE_PATH" | awk '{ print $NF }')"
 PACKAGE_DIR="$FILE_DIR/$FILE_NAME_NO_SUFFIX"
 PACKAGE_NAME="$FILE_NAME_NO_SUFFIX"
+ZIP_FILE_PATH="$FILE_DIR/$PACKAGE_NAME.frmx"
 UUID="$(uuidgen)"
 XML_DIR="$PACKAGE_DIR/$UUID"
 RELS_DIR="$PACKAGE_DIR/_rels"
@@ -115,7 +117,7 @@ if [[ -f "$PACKAGE_DIR/.DS_Store" ]]; then
   rm "$PACKAGE_DIR/.DS_Store"
 fi
 
-if [[ -f "$FILE_DIR/$PACKAGE_NAME.frmx" ]]; then
+if [[ -f "$ZIP_FILE_PATH" ]]; then
   read -p "Delete existing zip file $PACKAGE_NAME.frmx (Y/n)? " -n 1 -r
   echo
   if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -127,6 +129,6 @@ if [[ -f "$FILE_DIR/$PACKAGE_NAME.frmx" ]]; then
 fi
 
 echo "Making the zip file..."
-cd "$PACKAGE_DIR" && zip -r "../$PACKAGE_NAME.frmx" .
+cd "$PACKAGE_DIR" && zip -r "$ZIP_FILE_PATH" "$PACKAGE_DIR"
 
 debug_info
