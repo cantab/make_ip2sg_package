@@ -134,6 +134,6 @@ if [[ -f "$ZIP_FILE_PATH" ]]; then
 fi
 
 echo "Making the zip file..."
-cd "$PACKAGE_DIR" && zip -r "$ZIP_FILE_PATH" "$PACKAGE_DIR"
+cd "$PACKAGE_DIR" && zip -r "$ZIP_FILE_PATH" .
 
 debug_info
