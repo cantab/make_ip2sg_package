@@ -40,6 +40,9 @@ function debug_info {
   echo "Contents of .rels file:"
   cat "$RELS_FILE"
   echo ""
+  echo "Contents of .frmx zip file:"
+  unzip -l ../$PACKAGE_NAME.frmx
+  echo ""
   exit 1
 }
 
