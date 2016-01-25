@@ -8,6 +8,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Define a function to show help text
 function show_help {
+  echo "make_ip2sg_package: Create OPC packages for IP2SG XML batch filing"
   echo "Usage:"
   echo "   make_ip2sg_package [-f] file_name"
   echo "Options:"
