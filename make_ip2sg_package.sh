@@ -16,10 +16,7 @@ function show_help {
 # Define a function to show debug info
 function debug_info {
   echo ""
-  echo ""
   echo "Showing debugging information..."
-  echo ""
-  tree -a "$PACKAGE_DIR"
   echo ""
   echo "Variable values:"
   echo '$FILE_DIR' "is $FILE_DIR"
@@ -39,6 +36,9 @@ function debug_info {
   echo ""
   echo "Contents of .rels file:"
   cat "$RELS_FILE"
+  echo ""
+  echo "Contents of package directory:"
+  tree -a "$PACKAGE_DIR"
   echo ""
   echo "Contents of .frmx zip file:"
   unzip -l ../$PACKAGE_NAME.frmx
