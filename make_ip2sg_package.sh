@@ -160,4 +160,8 @@ fi
 echo "Making the zip file..."
 cd "$PACKAGE_DIR" && zip -r "$ZIP_FILE_PATH" .
 
+# Delete the package directory
+echo "Deleting the package directory..."
+trash "$PACKAGE_DIR"
+
 debug_info
